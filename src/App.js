@@ -1,16 +1,19 @@
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
+import Layout from "./components/layout/Layout";
+
 import AllQuotes from "./pages/AllQuotes";
 import NewQuote from "./pages/NewQuote";
 import QuoteDetail from "./pages/QuoteDetail";
 function App() {
   return (
-    <div>
+    <Layout>
       <Routes>
-        <Route path="quotes" element={<AllQuotes />}></Route>
-        <Route path="quotes/:quotesID" element={<QuoteDetail />}></Route>
-        <Route path="new-quote" element={<NewQuote />}></Route>
+        <Route path="/" element={<Navigate to="quotes" />} />
+        <Route path="quotes" element={<AllQuotes />} />
+        <Route path="quote/:quoteID/*" element={<QuoteDetail />} />
+        <Route path="new-quote" element={<NewQuote />} />
       </Routes>
-    </div>
+    </Layout>
   );
 }
 
