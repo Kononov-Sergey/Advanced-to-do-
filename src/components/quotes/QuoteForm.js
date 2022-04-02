@@ -27,7 +27,6 @@ const QuoteForm = (props) => {
             <LoadingSpinner />
           </div>
         )}
-
         <div className={classes.control}>
           <label htmlFor="author">Author</label>
           <input type="text" id="author" ref={authorInputRef} />
