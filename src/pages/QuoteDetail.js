@@ -54,7 +54,7 @@ const QuoteDetail = () => {
           element={
             <div className="centered">
               <Link className="btn--flat" to="comments">
-                Add comment
+                Show comments
               </Link>
             </div>
           }
