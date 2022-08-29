@@ -5,28 +5,28 @@ const MainNavigation = () => {
   return (
     <header className={classes.header}>
       <Link to="/" className={classes.logo}>
-        Great quotes
+        My Todo
       </Link>
       <nav className={classes.nav}>
         <ul>
           <li>
             <NavLink
-              to="/quotes"
+              to="/Todos"
               className={({ isActive }) =>
                 isActive ? classes.active : undefined
               }
             >
-              All Quotes
+              All Todos
             </NavLink>
           </li>
           <li>
             <NavLink
-              to="/new-quote"
+              to="/new-Todo"
               className={({ isActive }) =>
                 isActive ? classes.active : undefined
               }
             >
-              Add a Quote
+              Add Todo
             </NavLink>
           </li>
         </ul>

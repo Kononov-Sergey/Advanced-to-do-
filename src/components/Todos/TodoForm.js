@@ -2,9 +2,9 @@ import { useRef } from "react";
 
 import Card from "../UI/Card";
 import LoadingSpinner from "../UI/LoadingSpinner";
-import classes from "./QuoteForm.module.css";
+import classes from "./TodoForm.module.css";
 
-const QuoteForm = (props) => {
+const TodoForm = (props) => {
   const authorInputRef = useRef();
   const textInputRef = useRef();
 
@@ -14,9 +14,7 @@ const QuoteForm = (props) => {
     const enteredAuthor = authorInputRef.current.value;
     const enteredText = textInputRef.current.value;
 
-    // optional: Could validate here
-
-    props.onAddQuote({ author: enteredAuthor, text: enteredText });
+    props.onAddTodo({ topic: enteredAuthor, text: enteredText });
   }
 
   return (
@@ -28,7 +26,7 @@ const QuoteForm = (props) => {
           </div>
         )}
         <div className={classes.control}>
-          <label htmlFor="author">Author</label>
+          <label htmlFor="author">Topic</label>
           <input type="text" id="author" ref={authorInputRef} />
         </div>
         <div className={classes.control}>
@@ -37,7 +35,7 @@ const QuoteForm = (props) => {
         </div>
         <div className={classes.actions}>
           <button type="submit" className="btn">
-            Add Quote
+            Add Todo
           </button>
         </div>
       </form>
@@ -45,4 +43,4 @@ const QuoteForm = (props) => {
   );
 };
 
-export default QuoteForm;
+export default TodoForm;

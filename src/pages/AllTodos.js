@@ -1,17 +1,17 @@
 import { useEffect } from "react";
-import QuoteList from "../components/quotes/QuoteList";
-import NoQuotesFound from "../components/quotes/NoQuotesFound";
-import { getAllQuotes } from "../lib/api";
+import TodoList from "../components/Todos/TodoList";
+import NoTodosFound from "../components/Todos/NoTodosFound";
+import { getAllTodos } from "../lib/api";
 import useHttp from "../hooks/use-http";
 import LoadingSpinner from "../components/UI/LoadingSpinner";
 
-const AllQuotes = () => {
+const AllTodos = () => {
   const {
     sendRequest,
     status,
-    data: quotes,
+    data: Todos,
     error,
-  } = useHttp(getAllQuotes, true);
+  } = useHttp(getAllTodos, true);
 
   useEffect(() => {
     sendRequest();
@@ -33,11 +33,11 @@ const AllQuotes = () => {
     );
   }
 
-  if (status === "completed" && (quotes.length === 0 || !quotes)) {
-    return <NoQuotesFound />;
+  if (status === "completed" && (Todos.length === 0 || !Todos)) {
+    return <NoTodosFound />;
   }
 
-  return <QuoteList quotes={quotes} />;
+  return <TodoList Todos={Todos} />;
 };
 
-export default AllQuotes;
+export default AllTodos;

@@ -3,12 +3,12 @@ import React, { Suspense } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 import Layout from "./components/layout/Layout";
 
-import AllQuotes from "./pages/AllQuotes";
+import AllTodos from "./pages/AllTodos";
 
 import LoadingSpinner from "./components/UI/LoadingSpinner";
 
-const NewQuote = React.lazy(() => import("./pages/NewQuote"));
-const QuoteDetail = React.lazy(() => import("./pages/QuoteDetail"));
+const NewTodo = React.lazy(() => import("./pages/NewTodo"));
+const TodoDetail = React.lazy(() => import("./pages/TodoDetail"));
 const NotFound = React.lazy(() => import("./pages/NotFound"));
 
 function App() {
@@ -22,10 +22,10 @@ function App() {
         }
       >
         <Routes>
-          <Route path="/" element={<Navigate to="quotes" />} />
-          <Route path="quotes/" element={<AllQuotes />} />
-          <Route path="quotes/:quoteID/*" element={<QuoteDetail />} />
-          <Route path="new-quote" element={<NewQuote />} />
+          <Route path="/" element={<Navigate to="Todos" />} />
+          <Route path="Todos/" element={<AllTodos />} />
+          <Route path="Todos/:TodoID/*" element={<TodoDetail />} />
+          <Route path="new-Todo" element={<NewTodo />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>

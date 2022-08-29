@@ -1,20 +1,20 @@
 import { useRef, useEffect } from "react";
 import useHttp from "../../hooks/use-http";
-import { addComment } from "../../lib/api";
+import { addSubtask } from "../../lib/api";
 import LoadingSpinner from "../UI/LoadingSpinner";
 
-import classes from "./NewCommentForm.module.css";
+import classes from "./NewSubtaskForm.module.css";
 
-const NewCommentForm = (props) => {
-  const { sendRequest, status, error } = useHttp(addComment);
-  const commentTextRef = useRef();
+const NewSubtaskForm = (props) => {
+  const { sendRequest, status, error } = useHttp(addSubtask);
+  const SubtaskTextRef = useRef();
 
   const submitFormHandler = async (event) => {
     event.preventDefault();
-    if (commentTextRef.current.value != "") {
+    if (SubtaskTextRef.current.value != "") {
       await sendRequest({
-        quoteId: props.quoteID,
-        commentData: { text: commentTextRef.current.value },
+        TodoId: props.TodoID,
+        SubtaskData: { text: SubtaskTextRef.current.value },
       });
       props.showTextArea(false);
     }
@@ -28,14 +28,14 @@ const NewCommentForm = (props) => {
         </div>
       )}
       <div className={classes.control}>
-        <label htmlFor="comment">Your Comment</label>
-        <textarea id="comment" rows="5" ref={commentTextRef}></textarea>
+        <label htmlFor="Subtask">Your Subtask</label>
+        <textarea id="Subtask" rows="5" ref={SubtaskTextRef}></textarea>
       </div>
       <div className={classes.actions}>
-        <button className="btn">Add Comment</button>
+        <button className="btn">Add Subtask</button>
       </div>
     </form>
   );
 };
 
-export default NewCommentForm;
+export default NewSubtaskForm;

@@ -1,4 +1,4 @@
-.quote {
+.Todo {
   background-color: #162b2b;
   color: white;
   border-radius: 6px;
@@ -8,11 +8,11 @@
   max-width: 40rem;
 }
 
-.quote p {
+.Todo p {
   font-size: 2.5rem;
 }
 
-.quote figcaption {
+.Todo figcaption {
   font-style: italic;
   font-size: 1.5rem;
   text-align: right;

@@ -1,25 +1,25 @@
 import { Route, Routes, useParams, Link } from "react-router-dom";
 import { useEffect } from "react";
 
-import HighlightedQuote from "../components/quotes/HighlightedQuote";
-import Comments from "../components/comments/Comments";
+import HighlightedTodo from "../components/Todos/HighlightedTodo";
+import Subtasks from "../components/Subtasks/Subtasks";
 import LoadingSpinner from "../components/UI/LoadingSpinner";
 
 import useHttp from "../hooks/use-http";
-import { getSingleQuote } from "../lib/api";
+import { getSingleTodo } from "../lib/api";
 
-const QuoteDetail = () => {
+const TodoDetail = () => {
   const params = useParams();
   const {
     sendRequest,
     status,
-    data: quote,
+    data: Todo,
     error,
-  } = useHttp(getSingleQuote, true);
+  } = useHttp(getSingleTodo, true);
 
   useEffect(() => {
-    sendRequest(params.quoteID);
-  }, [sendRequest, params.quoteID]);
+    sendRequest(params.TodoID);
+  }, [sendRequest, params.TodoID]);
 
   if (status === "pending") {
     return (
@@ -37,32 +37,32 @@ const QuoteDetail = () => {
     );
   }
 
-  if (!quote.text) {
+  if (!Todo.text) {
     return (
       <div className="centered">
-        <h1>Not quote found!</h1>
+        <h1>Not Todo found!</h1>
       </div>
     );
   }
 
   return (
     <>
-      <HighlightedQuote text={quote.text} author={quote.author} />
+      <HighlightedTodo text={Todo.text} topic={Todo.topic} />
       <Routes>
         <Route
           path=""
           element={
             <div className="centered">
-              <Link className="btn--flat" to="comments">
-                Show comments
+              <Link className="btn--flat" to="Subtasks">
+                Show Subtasks
               </Link>
             </div>
           }
         />
-        <Route path="comments" element={<Comments />} />
+        <Route path="Subtasks" element={<Subtasks />} />
       </Routes>
     </>
   );
 };
 
-export default QuoteDetail;
+export default TodoDetail;

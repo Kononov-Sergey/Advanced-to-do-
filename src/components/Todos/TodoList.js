@@ -1,18 +1,18 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import QuoteItem from "./QuoteItem";
-import classes from "./QuoteList.module.css";
+import TodoItem from "./TodoItem";
+import classes from "./TodoList.module.css";
 
-const sortQuotes = (quotes, ascending) => {
-  return quotes.sort((quoteA, quoteB) => {
+const sortTodos = (Todos, ascending) => {
+  return Todos.sort((TodoA, TodoB) => {
     if (ascending) {
-      return quoteA.id > quoteB.id ? 1 : -1;
+      return TodoA.id > TodoB.id ? 1 : -1;
     } else {
-      return quoteA.id < quoteB.id ? 1 : -1;
+      return TodoA.id < TodoB.id ? 1 : -1;
     }
   });
 };
 
-const QuoteList = (props) => {
+const TodoList = (props) => {
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -20,7 +20,7 @@ const QuoteList = (props) => {
 
   const isSortingAscending = query.get("sort") === "asc";
 
-  const sortedQuotes = sortQuotes(props.quotes, isSortingAscending);
+  const sortedTodos = sortTodos(props.Todos, isSortingAscending);
 
   const changeSortingHadnler = () => {
     navigate(`?sort=${isSortingAscending ? "desc" : "asc"}`);
@@ -33,12 +33,12 @@ const QuoteList = (props) => {
         }`}</button>
       </div>
       <ul className={classes.list}>
-        {sortedQuotes.map((quote) => (
-          <QuoteItem
-            key={quote.id}
-            id={quote.id}
-            author={quote.author}
-            text={quote.text}
+        {sortedTodos.map((Todo) => (
+          <TodoItem
+            key={Todo.id}
+            id={Todo.id}
+            topic={Todo.topic}
+            text={Todo.text}
           />
         ))}
       </ul>
@@ -46,4 +46,4 @@ const QuoteList = (props) => {
   );
 };
 
-export default QuoteList;
+export default TodoList;
