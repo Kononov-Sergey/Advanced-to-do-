@@ -98,3 +98,16 @@ export async function getAllSubtasks(TodoId) {
 
   return transformedSubtasks;
 }
+
+export async function deleteTodo(TodoId) {
+  const response = await fetch(`${FIREBASE_DOMAIN}/Todos/${TodoId}.json`, {
+    method: "DELETE",
+  });
+  const data = await response.json();
+
+  if (!response.ok) {
+    throw new Error(data.message || "Could not delete todo.");
+  }
+
+  return null;
+}

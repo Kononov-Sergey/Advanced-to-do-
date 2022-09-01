@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import TodoItem from "./TodoItem";
 import classes from "./TodoList.module.css";
@@ -35,6 +36,7 @@ const TodoList = (props) => {
       <ul className={classes.list}>
         {sortedTodos.map((Todo) => (
           <TodoItem
+            setCurrentTodos={props.setCurrentTodos}
             key={Todo.id}
             id={Todo.id}
             topic={Todo.topic}

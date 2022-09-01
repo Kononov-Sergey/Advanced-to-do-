@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import TodoList from "../components/Todos/TodoList";
 import NoTodosFound from "../components/Todos/NoTodosFound";
 import { getAllTodos } from "../lib/api";
@@ -13,9 +13,15 @@ const AllTodos = () => {
     error,
   } = useHttp(getAllTodos, true);
 
+  const [currentTodos, setCurrentTodos] = useState();
+
   useEffect(() => {
     sendRequest();
   }, [sendRequest]);
+
+  useEffect(() => {
+    setCurrentTodos(Todos || []);
+  }, [status]);
 
   if (status === "pending") {
     return (
@@ -33,11 +39,11 @@ const AllTodos = () => {
     );
   }
 
-  if (status === "completed" && (Todos.length === 0 || !Todos)) {
+  if (status === "completed" && (currentTodos.length === 0 || !currentTodos)) {
     return <NoTodosFound />;
   }
 
-  return <TodoList Todos={Todos} />;
+  return <TodoList Todos={currentTodos} setCurrentTodos={setCurrentTodos} />;
 };
 
 export default AllTodos;
