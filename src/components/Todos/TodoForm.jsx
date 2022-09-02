@@ -14,7 +14,11 @@ const TodoForm = (props) => {
     const enteredTopic = topicInputRef.current.value;
     const enteredText = textInputRef.current.value;
 
-    props.onAddTodo({ topic: enteredTopic, text: enteredText });
+    props.onAddTodo({
+      topic: enteredTopic,
+      text: enteredText,
+      status: "PENDING",
+    });
   }
 
   return (

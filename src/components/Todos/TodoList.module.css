@@ -1,7 +1,22 @@
 .list {
   list-style: none;
+  width: 100%;
   margin: 0;
   padding: 0;
+}
+.list li:first-child {
+  font-size: 1.5rem;
+}
+
+li.pending {
+  color: darkgrey;
+}
+
+li.in-progress {
+  color: cornflowerblue;
+}
+li.done {
+  color: rgb(47, 194, 47);
 }
 
 .sorting {
@@ -22,4 +37,10 @@
 
 .sorting button:hover {
   background-color: #c2fafa;
+}
+
+.columns {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
 }
