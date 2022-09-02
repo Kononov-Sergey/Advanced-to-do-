@@ -47,7 +47,11 @@ const TodoDetail = () => {
 
   return (
     <>
-      <HighlightedTodo text={Todo.text} topic={Todo.topic} />
+      <HighlightedTodo
+        text={Todo.text}
+        topic={Todo.topic}
+        TodoId={params.TodoID}
+      />
       <Routes>
         <Route
           path=""

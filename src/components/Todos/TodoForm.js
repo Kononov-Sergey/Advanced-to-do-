@@ -5,16 +5,16 @@ import LoadingSpinner from "../UI/LoadingSpinner";
 import classes from "./TodoForm.module.css";
 
 const TodoForm = (props) => {
-  const authorInputRef = useRef();
+  const topicInputRef = useRef();
   const textInputRef = useRef();
 
   function submitFormHandler(event) {
     event.preventDefault();
 
-    const enteredAuthor = authorInputRef.current.value;
+    const enteredTopic = topicInputRef.current.value;
     const enteredText = textInputRef.current.value;
 
-    props.onAddTodo({ topic: enteredAuthor, text: enteredText });
+    props.onAddTodo({ topic: enteredTopic, text: enteredText });
   }
 
   return (
@@ -26,8 +26,8 @@ const TodoForm = (props) => {
           </div>
         )}
         <div className={classes.control}>
-          <label htmlFor="author">Topic</label>
-          <input type="text" id="author" ref={authorInputRef} />
+          <label htmlFor="topic">Topic</label>
+          <input type="text" id="topic" ref={topicInputRef} />
         </div>
         <div className={classes.control}>
           <label htmlFor="text">Text</label>

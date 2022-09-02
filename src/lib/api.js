@@ -111,3 +111,23 @@ export async function deleteTodo(TodoId) {
 
   return null;
 }
+
+export async function updateTodo(requestData) {
+  const response = await fetch(
+    `${FIREBASE_DOMAIN}/Todos/${requestData.TodoId}.json`,
+    {
+      method: "PATCH",
+      body: JSON.stringify({
+        text: requestData.text,
+        topic: requestData.topic,
+      }),
+    }
+  );
+  const data = await response.json();
+
+  if (!response.ok) {
+    throw new Error(data.message || "Could not update todo.");
+  }
+
+  return null;
+}
