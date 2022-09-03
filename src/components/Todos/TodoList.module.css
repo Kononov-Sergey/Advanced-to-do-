@@ -12,11 +12,21 @@ li.pending {
   color: darkgrey;
 }
 
+li.pending ~ li {
+  border: 2px solid darkgrey;
+}
+
 li.in-progress {
   color: cornflowerblue;
 }
+li.in-progress ~ li {
+  border: 2px solid cornflowerblue;
+}
 li.done {
   color: rgb(47, 194, 47);
+}
+li.done ~ li {
+  border: 2px solid rgb(47, 194, 47);
 }
 
 .sorting {

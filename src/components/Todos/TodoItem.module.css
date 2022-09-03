@@ -9,10 +9,6 @@
   background-color: #c2e7f0;
 }
 
-.item:last-of-type {
-  border-bottom: none;
-}
-
 .item figure {
   margin: 0;
   padding: 0;
