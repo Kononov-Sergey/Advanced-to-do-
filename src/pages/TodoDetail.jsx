@@ -1,4 +1,4 @@
-import { Route, Routes, useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 
 import HighlightedTodo from "../components/Todos/HighlightedTodo";
@@ -53,19 +53,7 @@ const TodoDetail = () => {
         TodoId={params.TodoID}
         status={Todo.status}
       />
-      <Routes>
-        <Route
-          path=""
-          element={
-            <div className="centered">
-              <Link className="btn--flat" to="Subtasks">
-                Show Subtasks
-              </Link>
-            </div>
-          }
-        />
-        <Route path="Subtasks" element={<Subtasks />} />
-      </Routes>
+      <Subtasks />
     </>
   );
 };

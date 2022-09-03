@@ -31,11 +31,11 @@ const TodoForm = (props) => {
         )}
         <div className={classes.control}>
           <label htmlFor="topic">Topic</label>
-          <input type="text" id="topic" ref={topicInputRef} />
+          <input required type="text" id="topic" ref={topicInputRef} />
         </div>
         <div className={classes.control}>
           <label htmlFor="text">Text</label>
-          <textarea id="text" rows="5" ref={textInputRef}></textarea>
+          <textarea required id="text" rows="5" ref={textInputRef}></textarea>
         </div>
         <div className={classes.actions}>
           <button type="submit" className="btn">

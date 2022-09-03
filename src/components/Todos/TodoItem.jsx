@@ -54,7 +54,7 @@ const TodoItem = (props) => {
         </button>
       )}
       <Link className="btn" to={`/Todos/${props.id}`}>
-        Edit
+        Edit & detail
       </Link>
     </li>
   );

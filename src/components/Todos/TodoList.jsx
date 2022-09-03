@@ -23,6 +23,52 @@ const TodoList = (props) => {
 
   const sortedTodos = sortTodos(props.Todos, isSortingAscending);
 
+  const sortedByStatusTodos = {
+    pending: [],
+    inProgress: [],
+    done: [],
+  };
+
+  // due to each re-render of component when props are changed this line will actually work without useEffect and e.t.c
+  sortedTodos.forEach((todo) => {
+    if (todo.status === "PENDING") {
+      sortedByStatusTodos.pending.push(
+        <TodoItem
+          setCurrentTodos={props.setCurrentTodos}
+          key={todo.id}
+          id={todo.id}
+          topic={todo.topic}
+          text={todo.text}
+          status={todo.status}
+        />
+      );
+    }
+    if (todo.status === "IN_PROGRESS") {
+      sortedByStatusTodos.inProgress.push(
+        <TodoItem
+          setCurrentTodos={props.setCurrentTodos}
+          key={todo.id}
+          id={todo.id}
+          topic={todo.topic}
+          text={todo.text}
+          status={todo.status}
+        />
+      );
+    }
+    if (todo.status === "DONE") {
+      sortedByStatusTodos.done.push(
+        <TodoItem
+          setCurrentTodos={props.setCurrentTodos}
+          key={todo.id}
+          id={todo.id}
+          topic={todo.topic}
+          text={todo.text}
+          status={todo.status}
+        />
+      );
+    }
+  });
+  console.log(sortedByStatusTodos);
   const changeSortingHadnler = () => {
     navigate(`?sort=${isSortingAscending ? "desc" : "asc"}`);
   };
@@ -36,42 +82,15 @@ const TodoList = (props) => {
       <div className={classes.columns}>
         <ul className={classes.list}>
           <li className={classes.pending}>Pending:</li>
-          {sortedTodos.map((Todo) => (
-            <TodoItem
-              setCurrentTodos={props.setCurrentTodos}
-              key={Todo.id}
-              id={Todo.id}
-              topic={Todo.topic}
-              text={Todo.text}
-              status={Todo.status}
-            />
-          ))}
+          {sortedByStatusTodos.pending}
         </ul>
         <ul className={classes.list}>
           <li className={classes["in-progress"]}>In Progress:</li>
-          {sortedTodos.map((Todo) => (
-            <TodoItem
-              setCurrentTodos={props.setCurrentTodos}
-              key={Todo.id}
-              id={Todo.id}
-              topic={Todo.topic}
-              text={Todo.text}
-              status={Todo.status}
-            />
-          ))}
+          {sortedByStatusTodos.inProgress}
         </ul>
         <ul className={classes.list}>
           <li className={classes.done}>Done:</li>
-          {sortedTodos.map((Todo) => (
-            <TodoItem
-              setCurrentTodos={props.setCurrentTodos}
-              key={Todo.id}
-              id={Todo.id}
-              topic={Todo.topic}
-              text={Todo.text}
-              status={Todo.status}
-            />
-          ))}
+          {sortedByStatusTodos.done}
         </ul>
       </div>
     </>
