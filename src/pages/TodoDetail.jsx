@@ -51,6 +51,7 @@ const TodoDetail = () => {
         text={Todo.text}
         topic={Todo.topic}
         TodoId={params.TodoID}
+        status={Todo.status}
       />
       <Routes>
         <Route

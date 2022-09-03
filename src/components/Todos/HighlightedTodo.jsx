@@ -20,6 +20,7 @@ const HighlightedTodo = (props) => {
       TodoId: props.TodoId,
       topic: topicInput,
       text: textInput,
+      status: props.status,
     });
   };
 

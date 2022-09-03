@@ -43,6 +43,7 @@ const TodoList = (props) => {
               id={Todo.id}
               topic={Todo.topic}
               text={Todo.text}
+              status={Todo.status}
             />
           ))}
         </ul>
@@ -55,6 +56,7 @@ const TodoList = (props) => {
               id={Todo.id}
               topic={Todo.topic}
               text={Todo.text}
+              status={Todo.status}
             />
           ))}
         </ul>
@@ -67,6 +69,7 @@ const TodoList = (props) => {
               id={Todo.id}
               topic={Todo.topic}
               text={Todo.text}
+              status={Todo.status}
             />
           ))}
         </ul>

@@ -114,12 +114,13 @@ export async function deleteTodo(TodoId) {
 
 export async function updateTodo(requestData) {
   const response = await fetch(
-    `${FIREBASE_DOMAIN}/Todos/${requestData.TodoId}.json`,
+    `${FIREBASE_DOMAIN}/Todos/${requestData.id}.json`,
     {
       method: "PATCH",
       body: JSON.stringify({
         text: requestData.text,
         topic: requestData.topic,
+        status: requestData.status,
       }),
     }
   );
