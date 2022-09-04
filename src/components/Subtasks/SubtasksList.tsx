@@ -1,7 +1,8 @@
 import SubTaskItem from "./SubTaskItem";
+import { SubtaskType } from "./Subtasks";
 import classes from "./SubtasksList.module.css";
 
-const SubtasksList = (props) => {
+const SubtasksList: React.FC<{ Subtasks: SubtaskType[] }> = (props) => {
   return (
     <ul className={classes.Subtasks}>
       {props.Subtasks.map((Subtask) => (

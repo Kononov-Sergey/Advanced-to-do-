@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import useHttp from "../../hooks/use-http";
 
@@ -9,19 +9,21 @@ import NewSubtaskForm from "./NewSubtaskForm";
 import SubtasksList from "./SubtasksList";
 import classes from "./Subtasks.module.css";
 
+export type SubtaskType = {
+  id: string;
+  text: string;
+};
+
 const Subtasks = () => {
   const params = useParams();
-  const {
-    sendRequest,
-    status,
-    data: allSubtasks,
-    error,
-  } = useHttp(getAllSubtasks, true);
+  const { sendRequest, status, data, error } = useHttp(getAllSubtasks, true);
   const [isAddingSubtask, setIsAddingSubtask] = useState(false);
+
+  const allSubtasks: SubtaskType[] = data;
 
   const { TodoID } = params;
 
-  let subtasks;
+  let subtasks: JSX.Element | null = null;
 
   useEffect(() => {
     sendRequest(TodoID);
@@ -50,6 +52,7 @@ const Subtasks = () => {
   if (error) {
     subtasks = <p className="centered">{error}</p>;
   }
+
   return (
     <section className={classes.Subtasks}>
       <h2>Subtasks</h2>

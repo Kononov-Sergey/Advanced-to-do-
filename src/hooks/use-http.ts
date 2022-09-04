@@ -1,6 +1,18 @@
 import { useReducer, useCallback } from "react";
 
-function httpReducer(state, action) {
+enum ActionTypes {
+  send = "SEND",
+  success = "SUCCESS",
+  error = "ERROR",
+}
+
+interface ActionInterface {
+  type: ActionTypes;
+  responseData?: object;
+  errorMessage?: string;
+}
+
+function httpReducer(state: any, action: ActionInterface) {
   if (action.type === "SEND") {
     return {
       data: null,
@@ -28,22 +40,36 @@ function httpReducer(state, action) {
   return state;
 }
 
-function useHttp(requestFunction, startWithPending = false) {
+type StateType = {
+  status: string | null;
+  data: any;
+  error: any;
+};
+
+const initialState: StateType = {
+  status: null,
+  data: null,
+  error: null,
+};
+
+function useHttp(
+  requestFunction: (requestData?: any) => void,
+  startWithPending = false
+) {
   const [httpState, dispatch] = useReducer(httpReducer, {
+    ...initialState,
     status: startWithPending ? "pending" : null,
-    data: null,
-    error: null,
   });
 
   const sendRequest = useCallback(
-    async function (requestData) {
-      dispatch({ type: "SEND" });
+    async function (requestData: object) {
+      dispatch({ type: ActionTypes.send });
       try {
-        const responseData = await requestFunction(requestData);
-        dispatch({ type: "SUCCESS", responseData });
-      } catch (error) {
+        const responseData: any = await requestFunction(requestData);
+        dispatch({ type: ActionTypes.success, responseData });
+      } catch (error: any) {
         dispatch({
-          type: "ERROR",
+          type: ActionTypes.error,
           errorMessage: error.message || "Something went wrong!",
         });
       }

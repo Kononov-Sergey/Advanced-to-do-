@@ -1,6 +1,6 @@
 import classes from "./SubTaskItem.module.css";
 
-const SubTaskItem = (props) => {
+const SubTaskItem: React.FC<{ text: string }> = (props) => {
   return (
     <li className={classes.item}>
       <p>{props.text}</p>

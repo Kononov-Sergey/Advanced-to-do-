@@ -1,3 +1,16 @@
+import { TodoStatus } from "../utils/changeTodoStatus";
+
+export interface TodoInteface {
+  id: string;
+  topic: string;
+  text: string;
+  status: TodoStatus;
+}
+
+export interface SubtaskInteface {
+  text: string;
+}
+
 const FIREBASE_DOMAIN =
   "https://react-router-bd9e9-default-rtdb.europe-west1.firebasedatabase.app/";
 
@@ -9,7 +22,7 @@ export async function getAllTodos() {
     throw new Error(data.message || "Could not fetch todos.");
   }
 
-  const transformedTodos = [];
+  const transformedTodos: TodoInteface[] = [];
 
   for (const key in data) {
     const TodoObj = {
@@ -23,7 +36,7 @@ export async function getAllTodos() {
   return transformedTodos;
 }
 
-export async function getSingleTodo(TodoId) {
+export async function getSingleTodo(TodoId: string) {
   const response = await fetch(`${FIREBASE_DOMAIN}/Todos/${TodoId}.json`);
   const data = await response.json();
 
@@ -31,7 +44,7 @@ export async function getSingleTodo(TodoId) {
     throw new Error(data.message || "Could not fetch todo.");
   }
 
-  const loadedTodo = {
+  const loadedTodo: TodoInteface = {
     id: TodoId,
     ...data,
   };
@@ -39,7 +52,7 @@ export async function getSingleTodo(TodoId) {
   return loadedTodo;
 }
 
-export async function addTodo(TodoData) {
+export async function addTodo(TodoData: TodoInteface) {
   const response = await fetch(`${FIREBASE_DOMAIN}/Todos.json`, {
     method: "POST",
     body: JSON.stringify(TodoData),
@@ -55,13 +68,14 @@ export async function addTodo(TodoData) {
 
   return null;
 }
+type addSubtaskArgumentType = { todoId: string; subtaskText: SubtaskInteface };
 
-export async function addSubtask(requestData) {
+export async function addSubtask(subtaskData: addSubtaskArgumentType) {
   const response = await fetch(
-    `${FIREBASE_DOMAIN}/Subtasks/${requestData.TodoId}.json`,
+    `${FIREBASE_DOMAIN}/Subtasks/${subtaskData.todoId}.json`,
     {
       method: "POST",
-      body: JSON.stringify(requestData.SubtaskData),
+      body: JSON.stringify(subtaskData.subtaskText),
       headers: {
         "Content-Type": "application/json",
       },
@@ -76,7 +90,7 @@ export async function addSubtask(requestData) {
   return { SubtaskId: data.name };
 }
 
-export async function getAllSubtasks(TodoId) {
+export async function getAllSubtasks(TodoId: string) {
   const response = await fetch(`${FIREBASE_DOMAIN}/Subtasks/${TodoId}.json`);
 
   const data = await response.json();
@@ -99,7 +113,7 @@ export async function getAllSubtasks(TodoId) {
   return transformedSubtasks;
 }
 
-export async function deleteTodo(TodoId) {
+export async function deleteTodo(TodoId: string) {
   const response = await fetch(`${FIREBASE_DOMAIN}/Todos/${TodoId}.json`, {
     method: "DELETE",
   });
@@ -112,7 +126,7 @@ export async function deleteTodo(TodoId) {
   return null;
 }
 
-export async function updateTodo(requestData) {
+export async function updateTodo(requestData: TodoInteface) {
   const response = await fetch(
     `${FIREBASE_DOMAIN}/Todos/${requestData.id}.json`,
     {
