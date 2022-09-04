@@ -1,10 +1,16 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useHttp from "../../hooks/use-http";
 import { updateTodo } from "../../lib/api";
+import { TodoStatusEnum } from "../../utils/changeTodoStatus";
 import classes from "./HighlightedTodo.module.css";
 
-const HighlightedTodo = (props) => {
+const HighlightedTodo: React.FC<{
+  text: string;
+  topic: string;
+  todoId: string;
+  status: TodoStatusEnum;
+}> = (props) => {
   const [isDataChanged, setIsDataChanged] = useState(false);
   const [topicInput, setTopicInput] = useState(props.topic);
   const [textInput, setTextInput] = useState(props.text);
@@ -13,11 +19,11 @@ const HighlightedTodo = (props) => {
 
   const navigate = useNavigate();
 
-  const submitUpdatedTodoInput = (event) => {
+  const submitUpdatedTodoInput = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     sendRequest({
-      TodoId: props.TodoId,
+      TodoId: props.todoId,
       topic: topicInput,
       text: textInput,
       status: props.status,
@@ -39,7 +45,7 @@ const HighlightedTodo = (props) => {
   }, [topicInput, textInput]);
 
   return (
-    <form className={classes.Todo}>
+    <form onSubmit={submitUpdatedTodoInput} className={classes.Todo}>
       <label>Topic:</label>
       <input
         onInput={(event) => {
@@ -55,11 +61,7 @@ const HighlightedTodo = (props) => {
         defaultValue={textInput}
       ></textarea>
       {isDataChanged && (
-        <button
-          type="submit"
-          onClick={submitUpdatedTodoInput}
-          className={classes["change-btn"]}
-        >
+        <button type="submit" className={classes["change-btn"]}>
           Change
         </button>
       )}

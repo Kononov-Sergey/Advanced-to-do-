@@ -1,24 +1,33 @@
 import { Link } from "react-router-dom";
-import { deleteTodo, updateTodo } from "../../lib/api";
+import { deleteTodo, TodoInteface, updateTodo } from "../../lib/api";
 import useHttp from "../../hooks/use-http";
 import classes from "./TodoItem.module.css";
-import changeTodoStatus from "../../utils/changeTodoStatus";
+import changeTodoStatus, { TodoStatusEnum } from "../../utils/changeTodoStatus";
 
-const TodoItem = (props) => {
+const TodoItem: React.FC<{
+  setCurrentTodos: (
+    state: TodoInteface[] | ((state: TodoInteface[]) => TodoInteface[])
+  ) => void;
+  key: string;
+  id: string;
+  topic: string;
+  text: string;
+  status: TodoStatusEnum;
+}> = (props) => {
   const { sendRequest: sendDeleteRequest } = useHttp(deleteTodo, true);
   const { sendRequest: sendUpdateRequest } = useHttp(updateTodo, true);
 
   const onDeleteTodoHandler = () => {
     sendDeleteRequest(props.id);
     props.setCurrentTodos((state) => {
-      const newState = JSON.parse(JSON.stringify(state));
+      const newState: TodoInteface[] = JSON.parse(JSON.stringify(state));
       return newState.filter((todo) => todo.id !== props.id);
     });
   };
 
   const onChangeTodoStatus = () => {
     props.setCurrentTodos((state) => {
-      return state.map((todo) => {
+      return state.map((todo: TodoInteface) => {
         if (todo.id === props.id) {
           const newState = changeTodoStatus(todo.status);
           sendUpdateRequest({
@@ -41,9 +50,7 @@ const TodoItem = (props) => {
     <li className={classes.item}>
       <figure>
         <figcaption>{props.topic}</figcaption>
-        <blockTodo>
-          <p>{props.text}</p>
-        </blockTodo>
+        <p>{props.text}</p>
       </figure>
       <button className="btn" onClick={onDeleteTodoHandler}>
         Delete

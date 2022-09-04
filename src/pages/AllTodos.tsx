@@ -1,29 +1,26 @@
 import { useEffect, useState } from "react";
 import TodoList from "../components/Todos/TodoList";
 import NoTodosFound from "../components/Todos/NoTodosFound";
-import { getAllTodos } from "../lib/api";
-import useHttp from "../hooks/use-http";
+import { getAllTodos, TodoInteface } from "../lib/api";
+import useHttp, { httpRequestStatusEnum } from "../hooks/use-http";
 import LoadingSpinner from "../components/UI/LoadingSpinner";
 
 const AllTodos = () => {
-  const {
-    sendRequest,
-    status,
-    data: Todos,
-    error,
-  } = useHttp(getAllTodos, true);
+  const { sendRequest, status, data, error } = useHttp(getAllTodos, true);
 
-  const [currentTodos, setCurrentTodos] = useState();
+  const todos: TodoInteface[] = data;
+
+  const [currentTodos, setCurrentTodos] = useState<TodoInteface[]>([]);
 
   useEffect(() => {
     sendRequest();
   }, [sendRequest]);
 
   useEffect(() => {
-    setCurrentTodos(Todos || []);
+    setCurrentTodos(todos || []);
   }, [status]);
 
-  if (status === "pending") {
+  if (status === httpRequestStatusEnum.pending) {
     return (
       <div className="centered">
         <LoadingSpinner />
@@ -39,7 +36,10 @@ const AllTodos = () => {
     );
   }
 
-  if (status === "completed" && (currentTodos.length === 0 || !currentTodos)) {
+  if (
+    status === httpRequestStatusEnum.completed &&
+    (currentTodos.length === 0 || !currentTodos)
+  ) {
     return <NoTodosFound />;
   }
 

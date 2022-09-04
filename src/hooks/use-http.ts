@@ -6,10 +6,21 @@ enum ActionTypes {
   error = "ERROR",
 }
 
+export enum httpRequestStatusEnum {
+  pending = "pending",
+  completed = "completed",
+}
+
 interface ActionInterface {
   type: ActionTypes;
   responseData?: object;
   errorMessage?: string;
+}
+
+interface StateType {
+  status: httpRequestStatusEnum | null;
+  data: any;
+  error: any;
 }
 
 function httpReducer(state: any, action: ActionInterface) {
@@ -40,12 +51,6 @@ function httpReducer(state: any, action: ActionInterface) {
   return state;
 }
 
-type StateType = {
-  status: string | null;
-  data: any;
-  error: any;
-};
-
 const initialState: StateType = {
   status: null,
   data: null,
@@ -58,7 +63,7 @@ function useHttp(
 ) {
   const [httpState, dispatch] = useReducer(httpReducer, {
     ...initialState,
-    status: startWithPending ? "pending" : null,
+    status: startWithPending ? httpRequestStatusEnum.pending : null,
   });
 
   const sendRequest = useCallback(

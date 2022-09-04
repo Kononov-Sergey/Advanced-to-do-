@@ -1,9 +1,14 @@
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { TodoInteface } from "../../lib/api";
+import { TodoStatusEnum } from "../../utils/changeTodoStatus";
 import TodoItem from "./TodoItem";
 import classes from "./TodoList.module.css";
 
-const sortTodos = (Todos, ascending) => {
+const sortTodos = (
+  Todos: TodoInteface[],
+  ascending: boolean
+): TodoInteface[] => {
   return Todos.sort((TodoA, TodoB) => {
     if (ascending) {
       return TodoA.id > TodoB.id ? 1 : -1;
@@ -13,7 +18,12 @@ const sortTodos = (Todos, ascending) => {
   });
 };
 
-const TodoList = (props) => {
+const TodoList: React.FC<{
+  Todos: TodoInteface[];
+  setCurrentTodos: (
+    state: TodoInteface[] | ((state: TodoInteface[]) => TodoInteface[])
+  ) => void;
+}> = (props) => {
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -23,7 +33,13 @@ const TodoList = (props) => {
 
   const sortedTodos = sortTodos(props.Todos, isSortingAscending);
 
-  const sortedByStatusTodos = {
+  type sortedByStatusTodosType = {
+    pending: JSX.Element[];
+    inProgress: JSX.Element[];
+    done: JSX.Element[];
+  };
+
+  const sortedByStatusTodos: sortedByStatusTodosType = {
     pending: [],
     inProgress: [],
     done: [],
@@ -31,7 +47,7 @@ const TodoList = (props) => {
 
   // due to each re-render of component when props are changed this line will actually work without useEffect and e.t.c
   sortedTodos.forEach((todo) => {
-    if (todo.status === "PENDING") {
+    if (todo.status === TodoStatusEnum.pending) {
       sortedByStatusTodos.pending.push(
         <TodoItem
           setCurrentTodos={props.setCurrentTodos}
@@ -43,7 +59,7 @@ const TodoList = (props) => {
         />
       );
     }
-    if (todo.status === "IN_PROGRESS") {
+    if (todo.status === TodoStatusEnum.inProgress) {
       sortedByStatusTodos.inProgress.push(
         <TodoItem
           setCurrentTodos={props.setCurrentTodos}
@@ -55,7 +71,7 @@ const TodoList = (props) => {
         />
       );
     }
-    if (todo.status === "DONE") {
+    if (todo.status === TodoStatusEnum.done) {
       sortedByStatusTodos.done.push(
         <TodoItem
           setCurrentTodos={props.setCurrentTodos}

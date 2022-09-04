@@ -1,4 +1,5 @@
 import { NavLink, Link } from "react-router-dom";
+import React from "react";
 import classes from "./MainNavigation.module.css";
 
 const MainNavigation = () => {

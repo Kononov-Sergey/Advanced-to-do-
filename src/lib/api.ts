@@ -1,10 +1,10 @@
-import { TodoStatus } from "../utils/changeTodoStatus";
+import { TodoStatusEnum } from "../utils/changeTodoStatus";
 
 export interface TodoInteface {
   id: string;
   topic: string;
   text: string;
-  status: TodoStatus;
+  status: TodoStatusEnum;
 }
 
 export interface SubtaskInteface {

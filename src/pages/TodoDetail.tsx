@@ -50,7 +50,7 @@ const TodoDetail = () => {
       <HighlightedTodo
         text={Todo.text}
         topic={Todo.topic}
-        TodoId={params.TodoID}
+        todoId={params.TodoID || ""}
         status={Todo.status}
       />
       <Subtasks />

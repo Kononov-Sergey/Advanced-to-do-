@@ -1,23 +1,29 @@
-import { useRef } from "react";
+import React, { useRef } from "react";
+import { TodoInteface } from "../../lib/api";
+import { TodoStatusEnum } from "../../utils/changeTodoStatus";
 
 import Card from "../UI/Card";
 import LoadingSpinner from "../UI/LoadingSpinner";
 import classes from "./TodoForm.module.css";
 
-const TodoForm = (props) => {
-  const topicInputRef = useRef();
-  const textInputRef = useRef();
+const TodoForm: React.FC<{
+  onAddTodo: (todo: TodoInteface) => void;
+  isLoading: boolean;
+}> = (props) => {
+  const topicInputRef = useRef<HTMLInputElement | null>(null);
+  const textInputRef = useRef<HTMLTextAreaElement | null>(null);
 
-  function submitFormHandler(event) {
+  function submitFormHandler(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
-    const enteredTopic = topicInputRef.current.value;
-    const enteredText = textInputRef.current.value;
+    const enteredTopic = topicInputRef.current?.value || "";
+    const enteredText = textInputRef.current?.value || "";
 
     props.onAddTodo({
+      id: "",
       topic: enteredTopic,
       text: enteredText,
-      status: "PENDING",
+      status: TodoStatusEnum.pending,
     });
   }
 
@@ -35,7 +41,7 @@ const TodoForm = (props) => {
         </div>
         <div className={classes.control}>
           <label htmlFor="text">Text</label>
-          <textarea required id="text" rows="5" ref={textInputRef}></textarea>
+          <textarea required id="text" rows={5} ref={textInputRef}></textarea>
         </div>
         <div className={classes.actions}>
           <button type="submit" className="btn">
