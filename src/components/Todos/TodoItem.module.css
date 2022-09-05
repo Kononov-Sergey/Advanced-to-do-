@@ -2,37 +2,51 @@
   margin: 1rem 0;
   padding: 1rem;
   display: flex;
-  gap: 1rem;
   justify-content: space-between;
-  align-items: flex-end;
+  align-items: flex-start;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   border-radius: 6px;
   background-color: #c2e7f0;
   position: relative;
+  min-height: 138px;
+  max-width: 362px;
 }
 .item > * {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
 }
 
 .item figure {
+  text-overflow: ellipsis;
   margin: 0;
   padding: 0;
-  width: 70%;
+  flex: 5;
 }
 
-.item blockTodo {
+.item .btn-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  flex: 3;
+}
+
+.item figcaption {
+  max-width: 205px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-style: italic;
+  color: #566d6d;
+  margin-bottom: 1rem;
+}
+
+.item p {
+  max-width: 205px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   margin: 0;
   text-align: left;
   font-size: 1.5rem;
   color: #212929;
-}
-
-.item p {
-  margin: 0;
-  margin-bottom: 0.25rem;
-}
-
-.item figcaption {
-  font-style: italic;
-  color: #566d6d;
 }

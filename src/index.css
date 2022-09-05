@@ -151,8 +151,10 @@ body {
   text-decoration: none;
   background-color: teal;
   color: white;
+  font-size: 1rem;
   border-radius: 4px;
-  padding: 0.75rem 1.5rem;
+  min-width: 120px;
+  padding: 0.75rem 1rem;
   border: 1px solid teal;
   cursor: pointer;
 }

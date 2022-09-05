@@ -59,18 +59,20 @@ const TodoItem: React.FC<{
         <figcaption>{props.topic}</figcaption>
         <p>{props.text}</p>
       </figure>
-      {props.status !== "DONE" && (
-        <button className="btn" onClick={onChangeTodoStatus}>
-          Next Step
-        </button>
-      )}
+      <div className={classes["btn-section"]}>
+        {props.status !== "DONE" && (
+          <button className="btn" onClick={onChangeTodoStatus}>
+            <span>Next step</span>
+          </button>
+        )}
+        <Link className="btn" to={`/Todos/${props.id}`}>
+          <span>Edit & detail</span>
+        </Link>
+      </div>
       <DeleteButton
         onClick={onDeleteTodoHandler}
         aditionalClasses="del-btn__position-TodoItem"
       />
-      <Link className="btn" to={`/Todos/${props.id}`}>
-        Edit & detail
-      </Link>
     </li>
   );
 };
