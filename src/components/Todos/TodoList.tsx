@@ -84,7 +84,6 @@ const TodoList: React.FC<{
       );
     }
   });
-  console.log(sortedByStatusTodos);
   const changeSortingHadnler = () => {
     navigate(`?sort=${isSortingAscending ? "desc" : "asc"}`);
   };

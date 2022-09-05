@@ -117,13 +117,25 @@ export async function getAllSubtasks(TodoId: string) {
 }
 
 export async function deleteTodo(TodoId: string) {
-  const response = await fetch(`${FIREBASE_DOMAIN}/Todos/${TodoId}.json`, {
+  const responseTodo = await fetch(`${FIREBASE_DOMAIN}/Todos/${TodoId}.json`, {
     method: "DELETE",
   });
-  const data = await response.json();
+  const responseSubtask = await fetch(
+    `${FIREBASE_DOMAIN}/Subtasks/${TodoId}.json`,
+    {
+      method: "DELETE",
+    }
+  );
 
-  if (!response.ok) {
-    throw new Error(data.message || "Could not delete todo.");
+  const dataTodo = await responseTodo.json();
+  const dataSubtask = await responseSubtask.json();
+
+  if (!responseTodo.ok) {
+    throw new Error(dataTodo.message || "Could not delete todo.");
+  }
+
+  if (!responseSubtask.ok) {
+    throw new Error(dataSubtask.message || "Could not delete subtask.");
   }
 
   return null;
