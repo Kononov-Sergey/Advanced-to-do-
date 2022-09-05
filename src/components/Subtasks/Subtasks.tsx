@@ -65,7 +65,7 @@ const Subtasks = () => {
       {isAddingSubtask && (
         <NewSubtaskForm
           showTextArea={setIsAddingSubtask}
-          TodoID={params.TodoID}
+          todoID={params.TodoID}
         />
       )}
     </section>

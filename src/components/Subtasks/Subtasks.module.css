@@ -1,6 +1,10 @@
 .Subtasks {
   text-align: center;
 }
+.Subtasks h2 {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
 
 .Subtasks > button {
   font-size: 1.25rem;

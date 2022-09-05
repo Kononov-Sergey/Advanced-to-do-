@@ -1,12 +1,12 @@
 import { useRef } from "react";
 import useHttp from "../../hooks/use-http";
-import { addSubtask } from "../../lib/api";
+import { addSubtask, addSubtaskArgumentType } from "../../lib/api";
 import LoadingSpinner from "../UI/LoadingSpinner";
 
 import classes from "./NewSubtaskForm.module.css";
 
 const NewSubtaskForm: React.FC<{
-  TodoID: string | undefined;
+  todoID: string | undefined;
   showTextArea: (arg: boolean) => void;
 }> = (props) => {
   const { sendRequest, status } = useHttp(addSubtask);
@@ -14,11 +14,12 @@ const NewSubtaskForm: React.FC<{
 
   const submitFormHandler = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (SubtaskTextRef.current?.value != "") {
-      await sendRequest({
-        TodoId: props.TodoID,
-        SubtaskData: { text: SubtaskTextRef.current?.value },
-      });
+    if (SubtaskTextRef.current?.value !== "" && props.todoID) {
+      const newSubtaskInfo: addSubtaskArgumentType = {
+        subtaskData: { text: SubtaskTextRef.current!.value },
+        todoId: props.todoID,
+      };
+      await sendRequest(newSubtaskInfo);
       props.showTextArea(false);
     }
   };

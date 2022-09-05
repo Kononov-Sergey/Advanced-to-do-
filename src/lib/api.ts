@@ -68,14 +68,17 @@ export async function addTodo(TodoData: TodoInteface) {
 
   return null;
 }
-type addSubtaskArgumentType = { todoId: string; subtaskText: SubtaskInteface };
+export type addSubtaskArgumentType = {
+  todoId: string;
+  subtaskData: SubtaskInteface;
+};
 
-export async function addSubtask(subtaskData: addSubtaskArgumentType) {
+export async function addSubtask(subtaskInfo: addSubtaskArgumentType) {
   const response = await fetch(
-    `${FIREBASE_DOMAIN}/Subtasks/${subtaskData.todoId}.json`,
+    `${FIREBASE_DOMAIN}/Subtasks/${subtaskInfo.todoId}.json`,
     {
       method: "POST",
-      body: JSON.stringify(subtaskData.subtaskText),
+      body: JSON.stringify(subtaskInfo.subtaskData),
       headers: {
         "Content-Type": "application/json",
       },
