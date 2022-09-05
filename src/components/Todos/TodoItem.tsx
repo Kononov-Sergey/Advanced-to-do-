@@ -3,6 +3,8 @@ import { deleteTodo, TodoInteface, updateTodo } from "../../lib/api";
 import useHttp from "../../hooks/use-http";
 import classes from "./TodoItem.module.css";
 import changeTodoStatus, { TodoStatusEnum } from "../../utils/changeTodoStatus";
+import DeleteButton from "../UI/DeleteButton";
+import { useEffect } from "react";
 
 const TodoItem: React.FC<{
   setCurrentTodos: (
@@ -30,12 +32,6 @@ const TodoItem: React.FC<{
       return state.map((todo: TodoInteface) => {
         if (todo.id === props.id) {
           const newState = changeTodoStatus(todo.status);
-          sendUpdateRequest({
-            id: props.id,
-            text: props.text,
-            topic: props.topic,
-            status: newState,
-          });
           return {
             ...todo,
             status: newState,
@@ -46,20 +42,32 @@ const TodoItem: React.FC<{
     });
   };
 
+  useEffect(() => {
+    if (props.id) {
+      sendUpdateRequest({
+        id: props.id,
+        text: props.text,
+        topic: props.topic,
+        status: props.status,
+      });
+    }
+  }, [props.status]);
+
   return (
     <li className={classes.item}>
       <figure>
         <figcaption>{props.topic}</figcaption>
         <p>{props.text}</p>
       </figure>
-      <button className="btn" onClick={onDeleteTodoHandler}>
-        Delete
-      </button>
       {props.status !== "DONE" && (
         <button className="btn" onClick={onChangeTodoStatus}>
           Next Step
         </button>
       )}
+      <DeleteButton
+        onClick={onDeleteTodoHandler}
+        aditionalClasses="del-btn__position-TodoItem"
+      />
       <Link className="btn" to={`/Todos/${props.id}`}>
         Edit & detail
       </Link>

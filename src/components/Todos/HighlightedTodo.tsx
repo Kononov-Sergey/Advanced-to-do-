@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useHttp from "../../hooks/use-http";
-import { updateTodo } from "../../lib/api";
+import { TodoInteface, updateTodo } from "../../lib/api";
 import { TodoStatusEnum } from "../../utils/changeTodoStatus";
 import classes from "./HighlightedTodo.module.css";
 
@@ -21,13 +21,13 @@ const HighlightedTodo: React.FC<{
 
   const submitUpdatedTodoInput = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-
-    sendRequest({
-      TodoId: props.todoId,
+    const UpdatedTodo: TodoInteface = {
+      id: props.todoId,
       topic: topicInput,
       text: textInput,
       status: props.status,
-    });
+    };
+    sendRequest(UpdatedTodo);
   };
 
   useEffect(() => {

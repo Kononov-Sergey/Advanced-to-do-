@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import { TodoInteface } from "../../lib/api";
+import { onAddEventTodoInfoType } from "../../pages/NewTodo";
 import { TodoStatusEnum } from "../../utils/changeTodoStatus";
 
 import Card from "../UI/Card";
@@ -7,7 +7,7 @@ import LoadingSpinner from "../UI/LoadingSpinner";
 import classes from "./TodoForm.module.css";
 
 const TodoForm: React.FC<{
-  onAddTodo: (todo: TodoInteface) => void;
+  onAddTodo: (todo: onAddEventTodoInfoType) => void;
   isLoading: boolean;
 }> = (props) => {
   const topicInputRef = useRef<HTMLInputElement | null>(null);
@@ -20,7 +20,6 @@ const TodoForm: React.FC<{
     const enteredText = textInputRef.current?.value || "";
 
     props.onAddTodo({
-      id: "",
       topic: enteredTopic,
       text: enteredText,
       status: TodoStatusEnum.pending,

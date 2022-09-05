@@ -18,7 +18,7 @@ const AllTodos = () => {
 
   useEffect(() => {
     setCurrentTodos(todos || []);
-  }, [status]);
+  }, [status, todos]);
 
   if (status === httpRequestStatusEnum.pending) {
     return (

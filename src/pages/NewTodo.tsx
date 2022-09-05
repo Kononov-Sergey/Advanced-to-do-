@@ -4,6 +4,13 @@ import { useEffect } from "react";
 import TodoForm from "../components/Todos/TodoForm";
 import useHttp from "../hooks/use-http";
 import { addTodo, TodoInteface } from "../lib/api";
+import { TodoStatusEnum } from "../utils/changeTodoStatus";
+
+export type onAddEventTodoInfoType = {
+  topic: string;
+  text: string;
+  status: TodoStatusEnum;
+};
 
 const NewTodo = () => {
   const { sendRequest, status } = useHttp(addTodo);
@@ -15,7 +22,7 @@ const NewTodo = () => {
     }
   }, [status, navigate]);
 
-  const addTodoHandler = (data: TodoInteface) => {
+  const addTodoHandler = (data: onAddEventTodoInfoType) => {
     sendRequest(data);
   };
 
