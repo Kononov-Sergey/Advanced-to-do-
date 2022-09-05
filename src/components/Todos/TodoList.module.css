@@ -54,3 +54,15 @@ li.done ~ li {
   justify-content: space-between;
   gap: 1rem;
 }
+
+.add-todo-btn {
+  text-align: center;
+  text-decoration: none;
+  color: gray;
+  cursor: pointer;
+  font-size: 1.5rem;
+}
+
+.add-todo-btn:hover {
+  color: darkgray;
+}

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { TodoInteface } from "../../lib/api";
 import { TodoStatusEnum } from "../../utils/changeTodoStatus";
 import TodoItem from "./TodoItem";
@@ -84,6 +84,11 @@ const TodoList: React.FC<{
       );
     }
   });
+  sortedByStatusTodos.pending.push(
+    <Link className={classes["add-todo-btn"]} to={"/new-Todo"}>
+      + Add todo
+    </Link>
+  );
   const changeSortingHadnler = () => {
     navigate(`?sort=${isSortingAscending ? "desc" : "asc"}`);
   };

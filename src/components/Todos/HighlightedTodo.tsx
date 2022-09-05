@@ -59,6 +59,7 @@ const HighlightedTodo: React.FC<{
           setTextInput(event.currentTarget.value);
         }}
         defaultValue={textInput}
+        rows={2}
       ></textarea>
       {isDataChanged && (
         <button type="submit" className={classes["change-btn"]}>
