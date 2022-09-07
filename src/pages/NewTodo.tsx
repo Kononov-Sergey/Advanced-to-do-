@@ -20,7 +20,7 @@ const NewTodo = () => {
 
   useEffect(() => {
     if (status === "completed") {
-      navigate("/Todos", { replace: true });
+      navigate("/Todos");
     }
   }, [status, navigate]);
 

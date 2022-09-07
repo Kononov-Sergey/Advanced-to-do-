@@ -25,7 +25,7 @@ function App() {
       >
         <Routes>
           <Route path="/" element={<Navigate to="Todos" />} />
-          <Route path="Todos/" element={<AllTodos />} />
+          <Route path="Todos" element={<AllTodos />} />
           <Route path="Todos/:TodoID/*" element={<TodoDetail />} />
           <Route path="new-Todo" element={<NewTodo />} />
           <Route path="*" element={<NotFound />} />

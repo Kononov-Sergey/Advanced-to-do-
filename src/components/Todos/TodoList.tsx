@@ -85,7 +85,7 @@ const TodoList: React.FC<{
     }
   });
   sortedByStatusTodos.pending.push(
-    <Link className={classes["add-todo-btn"]} to={"/new-Todo"}>
+    <Link key={"link"} className={classes["add-todo-btn"]} to={"/new-Todo"}>
       + Add todo
     </Link>
   );
