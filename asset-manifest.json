@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/Advanced-to-do-/static/css/main.5273ca53.css",
-    "main.js": "/Advanced-to-do-/static/js/main.d2fa6455.js",
+    "main.js": "/Advanced-to-do-/static/js/main.7fec0495.js",
     "static/css/357.9eccff66.chunk.css": "/Advanced-to-do-/static/css/357.9eccff66.chunk.css",
     "static/js/357.83757c9b.chunk.js": "/Advanced-to-do-/static/js/357.83757c9b.chunk.js",
     "static/css/368.2158b189.chunk.css": "/Advanced-to-do-/static/css/368.2158b189.chunk.css",
@@ -9,7 +9,7 @@
     "static/js/949.9196cc53.chunk.js": "/Advanced-to-do-/static/js/949.9196cc53.chunk.js",
     "index.html": "/Advanced-to-do-/index.html",
     "main.5273ca53.css.map": "/Advanced-to-do-/static/css/main.5273ca53.css.map",
-    "main.d2fa6455.js.map": "/Advanced-to-do-/static/js/main.d2fa6455.js.map",
+    "main.7fec0495.js.map": "/Advanced-to-do-/static/js/main.7fec0495.js.map",
     "357.9eccff66.chunk.css.map": "/Advanced-to-do-/static/css/357.9eccff66.chunk.css.map",
     "357.83757c9b.chunk.js.map": "/Advanced-to-do-/static/js/357.83757c9b.chunk.js.map",
     "368.2158b189.chunk.css.map": "/Advanced-to-do-/static/css/368.2158b189.chunk.css.map",
@@ -18,6 +18,6 @@
   },
   "entrypoints": [
     "static/css/main.5273ca53.css",
-    "static/js/main.d2fa6455.js"
+    "static/js/main.7fec0495.js"
   ]
 }
