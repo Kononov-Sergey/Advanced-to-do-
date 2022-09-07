@@ -1,0 +1,1 @@
+{"version":3,"file":"static/js/949.9196cc53.chunk.js","mappings":"oJAKA,UAHiB,WACf,OAAO,cAAGA,UAAU,WAAb,iCACR,C","sources":["pages/NotFound.tsx"],"sourcesContent":["// basic not-found page\r\n\r\nconst NotFound = () => {\r\n  return <p className=\"centered\">404. Page not found!</p>;\r\n};\r\nexport default NotFound;\r\n"],"names":["className"],"sourceRoot":""}
