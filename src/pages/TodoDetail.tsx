@@ -8,6 +8,8 @@ import LoadingSpinner from "../components/UI/LoadingSpinner";
 import useHttp from "../hooks/use-http";
 import { getSingleTodo } from "../lib/api";
 
+// TodoDetail consits indvidual subtasks and info about current todo. Fetched todo id from the url params via useParams
+
 const TodoDetail = () => {
   const params = useParams();
   const {

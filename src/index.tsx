@@ -8,6 +8,7 @@ const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 root.render(
+  // i wrapped the app comp in BrowserRouter, so the react-router can work
   <BrowserRouter>
     <App />
   </BrowserRouter>

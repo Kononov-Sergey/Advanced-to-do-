@@ -2,6 +2,8 @@ import { NavLink, Link } from "react-router-dom";
 import React from "react";
 import classes from "./MainNavigation.module.css";
 
+// comp that separates a nav logic asides, very efficient when you start extend your app
+
 const MainNavigation = () => {
   return (
     <header className={classes.header}>

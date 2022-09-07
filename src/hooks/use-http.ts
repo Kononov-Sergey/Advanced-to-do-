@@ -1,14 +1,14 @@
 import { useReducer, useCallback } from "react";
 
+export enum httpRequestStatusEnum {
+  pending = "pending",
+  completed = "completed",
+}
+
 enum ActionTypes {
   send = "SEND",
   success = "SUCCESS",
   error = "ERROR",
-}
-
-export enum httpRequestStatusEnum {
-  pending = "pending",
-  completed = "completed",
 }
 
 interface ActionInterface {
@@ -57,6 +57,8 @@ const initialState: StateType = {
   error: null,
 };
 
+// basic custom hook that takes care about async req to the server (worked together with api.ts)
+
 function useHttp(
   requestFunction: (requestData?: any) => void,
   startWithPending = false
@@ -65,7 +67,7 @@ function useHttp(
     ...initialState,
     status: startWithPending ? httpRequestStatusEnum.pending : null,
   });
-
+  // useClallback gives us confident knowledge that this certain function will not be re-rendered any time when this hook is called
   const sendRequest = useCallback(
     async function (requestData: object) {
       dispatch({ type: ActionTypes.send });

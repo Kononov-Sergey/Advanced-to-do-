@@ -23,6 +23,7 @@ const Subtasks = () => {
 
   const { TodoID } = params;
 
+  // not common way to work in React, but it's quite convenient to read and adjust
   let subtasks: JSX.Element | null = null;
 
   useEffect(() => {

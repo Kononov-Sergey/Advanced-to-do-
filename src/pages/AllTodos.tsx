@@ -5,6 +5,8 @@ import { getAllTodos, TodoInteface } from "../lib/api";
 import useHttp, { httpRequestStatusEnum } from "../hooks/use-http";
 import LoadingSpinner from "../components/UI/LoadingSpinner";
 
+// The AllTodos page is a superstructure of the TodoList. It also renders a loding spinner and displays errors
+
 const AllTodos = () => {
   const { sendRequest, status, data, error } = useHttp(getAllTodos, true);
 

@@ -1,3 +1,5 @@
+// basic not-found page
+
 const NotFound = () => {
   return <p className="centered">404. Page not found!</p>;
 };

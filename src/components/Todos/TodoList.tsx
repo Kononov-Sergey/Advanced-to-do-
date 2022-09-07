@@ -45,7 +45,7 @@ const TodoList: React.FC<{
     done: [],
   };
 
-  // due to each re-render of component when props are changed this line will actually work without useEffect and e.t.c
+  // due to each re-render of component when props are changed this line will work properly without useEffect and e.t.c
   sortedTodos.forEach((todo) => {
     if (todo.status === TodoStatusEnum.pending) {
       sortedByStatusTodos.pending.push(

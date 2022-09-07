@@ -1,5 +1,8 @@
 import { TodoStatusEnum } from "../utils/changeTodoStatus";
 
+// this file is responsible of any interaction with server (api so to say)
+// so get post delete patch, these all methods are here
+
 export interface TodoInteface {
   id: string;
   topic: string;

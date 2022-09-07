@@ -20,6 +20,10 @@ const HighlightedTodo: React.FC<{
   const navigate = useNavigate();
 
   const submitUpdatedTodoInput = (event: React.FormEvent<HTMLFormElement>) => {
+    // i called "event.preventDefault();"" cause we don't want to refresh the whole page during the submit form event,
+    // instead we call this func, and do what we wanna do
+    // even though we want to navigate to another page, we should use diff tools for that (in our case useNavigate)
+    // because React bases on concept called SPA (single page application), and we MUST not allow our app reload the page entirely
     event.preventDefault();
     const UpdatedTodo: TodoInteface = {
       id: props.todoId,

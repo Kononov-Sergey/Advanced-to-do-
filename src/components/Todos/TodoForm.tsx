@@ -10,6 +10,7 @@ const TodoForm: React.FC<{
   onAddTodo: (todo: onAddEventTodoInfoType) => void;
   isLoading: boolean;
 }> = (props) => {
+  // useRef can contain any type of a html element to interact with him later
   const topicInputRef = useRef<HTMLInputElement | null>(null);
   const textInputRef = useRef<HTMLTextAreaElement | null>(null);
 
@@ -35,6 +36,7 @@ const TodoForm: React.FC<{
           </div>
         )}
         <div className={classes.control}>
+          {/* you can 'attached' labels to their inputs using htmlFor attr or just wrap the input inside of a label */}
           <label htmlFor="topic">Topic</label>
           <input required type="text" id="topic" ref={topicInputRef} />
         </div>
@@ -43,6 +45,8 @@ const TodoForm: React.FC<{
           <textarea required id="text" rows={5} ref={textInputRef}></textarea>
         </div>
         <div className={classes.actions}>
+          {/* also good practice to gives each btn within a form their type, 
+          that helps for the accessibility and clear understanding of what this btn is responsible of */}
           <button type="submit" className="btn">
             Add Todo
           </button>

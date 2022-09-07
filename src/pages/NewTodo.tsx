@@ -6,6 +6,8 @@ import useHttp from "../hooks/use-http";
 import { addTodo, TodoInteface } from "../lib/api";
 import { TodoStatusEnum } from "../utils/changeTodoStatus";
 
+// The NewTodo page is a superstructure of the TodoForm. It also renders a loding spinner and displays errors
+
 export type onAddEventTodoInfoType = {
   topic: string;
   text: string;

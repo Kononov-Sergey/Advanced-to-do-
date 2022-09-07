@@ -6,6 +6,8 @@ import changeTodoStatus, { TodoStatusEnum } from "../../utils/changeTodoStatus";
 import DeleteButton from "../UI/DeleteButton";
 import { useEffect } from "react";
 
+// in this comp i decided to describe all props certainly, so it looks a little bit ugly but i'm assure that all throw throught the props are arrived precisely
+
 const TodoItem: React.FC<{
   setCurrentTodos: (
     state: TodoInteface[] | ((state: TodoInteface[]) => TodoInteface[])
@@ -21,6 +23,9 @@ const TodoItem: React.FC<{
 
   const onDeleteTodoHandler = () => {
     sendDeleteRequest(props.id);
+    // in React we can give a setFunction in useState not only a certain value but a callback that returns a value,
+    // where the first arg in this callback will be prev state
+    // as you can see, i've used this trick to safety update (delete in this case) useState value according to the prev state
     props.setCurrentTodos((state) => {
       const newState: TodoInteface[] = JSON.parse(JSON.stringify(state));
       return newState.filter((todo) => todo.id !== props.id);
